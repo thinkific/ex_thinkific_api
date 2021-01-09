@@ -1,16 +1,16 @@
-defmodule ThinkificAdminAPI.Mixfile do
+defmodule ExThinkificAPI.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :thinkific_admin_api,
-     version: "0.1.3",
+    [app: :ex_thinkific_api,
+     version: "0.1.0",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: description(),
      package: package(),
      deps: deps(),
-     name: "Thinkific Admin API",
+     name: "Thinkific API SDK",
      docs: [main: "readme",
             extras: ["README.md"]]
     ]
@@ -25,7 +25,7 @@ defmodule ThinkificAdminAPI.Mixfile do
   end
 
   defp description() do
-    "The Elixir SDK for the Thinkific Admin API"
+    "The Elixir SDK for Thinkific API"
   end
 
   defp package() do
@@ -33,7 +33,7 @@ defmodule ThinkificAdminAPI.Mixfile do
       # These are the default files included in the package
       files: ~w(lib mix.exs README*),
       licenses: ["Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/thinkific/elixir_thinkific_admin_api"}
+      links: %{"GitHub" => "https://github.com/thinkific/ex_thinkific_api"}
     ]
   end
 

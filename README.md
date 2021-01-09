@@ -1,18 +1,18 @@
-# ThinkificAdminAPI
+# Thinkific API's Elixir SDK
 
 Thinkific's public API can be used to integrate your application with your Thinkific site.
 
 ## Installation
 
-This package can be installed by adding `thinkific_admin_api` to your list of dependencies in `mix.exs`:
+This package can be installed by adding `ex_thinkific_api` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:thinkific_admin_api, "~> 0.1.0"}]
+  [{:ex_thinkific_api, "~> 0.1.0"}]
 end
 ```
 
-The docs can be found at [Thinkific Admin API Hex Docs](https://hexdocs.pm/thinkific_admin_api/readme.html).
+The docs can be found at [Thinkific API SDK Hex Docs](https://hexdocs.pm/ex_thinkific_api/readme.html).
 
 ## How to use it
 

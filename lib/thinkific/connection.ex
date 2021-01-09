@@ -4,7 +4,7 @@
 
 defmodule Thinkific.Connection do
   @moduledoc """
-  Handle Tesla connections for ThinkificAdminAPI.
+  Handle Tesla connections for ExThinkificAPI.
   """
 
   use Tesla

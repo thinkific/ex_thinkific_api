@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :thinkific_admin_api, key: :value
+#     config :ex_thinkific_api, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:thinkific_admin_api, :key)
+#     Application.get_env(:ex_thinkific_api, :key)
 #
 # Or configure a 3rd-party app:
 #
