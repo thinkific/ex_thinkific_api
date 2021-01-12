@@ -12,6 +12,7 @@ defmodule Thinkific.Connection do
   # Add any middleware here (authentication)
   # plug Tesla.Middleware.BaseUrl, "https://api.thinkific.com/api/public/v1"
   # plug Tesla.Middleware.Headers, [{"User-Agent", "elixir-sdk"}]
+  plug Tesla.Middleware.EncodeJson, engine: Poison, engine_opts: [keys: :atoms]
 
   @doc """
   Configure an authless client connection (this is useless, unless you want to easily see unauthorized error messages)

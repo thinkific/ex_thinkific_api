@@ -116,12 +116,15 @@ defmodule Thinkific.RequestBuilder do
   """
   @spec decode({atom, Tesla.Env.t} | term()) :: {:ok, struct()} | {:error, Tesla.Env.t} | {:error, term()}
   def decode({:ok, %Tesla.Env{status: 200, body: body}}), do: Poison.decode(body)
+  def decode({:ok, %Tesla.Env{status: 201, body: body}}), do: Poison.decode(body)
   def decode({:ok, %Tesla.Env{status: 401, body: body}}), do: Poison.decode(body)
   def decode({:error, response}), do: {:error, response}
 
   @spec decode({atom, Tesla.Env.t} | term(), :false | struct() | [struct()]) :: {:ok, struct()} | {:error, Tesla.Env.t} | {:error, term()}
   def decode({:ok, %Tesla.Env{status: 200} = env}, false), do: {:ok, env}
+  def decode({:ok, %Tesla.Env{status: 201} = env}, false), do: {:ok, env}
   def decode({:ok, %Tesla.Env{status: 200, body: body}}, struct), do: Poison.decode(body, as: struct)
+  def decode({:ok, %Tesla.Env{status: 201, body: body}}, struct), do: Poison.decode(body, as: struct)
   def decode({:ok, %Tesla.Env{status: 401, body: body}}, _struct), do: Poison.decode(body)
   def decode({:error, response}, _struct), do: {:error, response}
 end

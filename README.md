@@ -59,3 +59,12 @@ In order to get a list of courses:
 # In order to define conn, check the Connection section above
 Thinkific.Api.Webhooks.get_webhooks(conn)
 ```
+
+#### Creating data example
+
+```elixir
+# In order to define conn, check the Connection section above
+Thinkific.Api.Webhooks.create_webhook(
+  conn, [body: %Thinkific.Model.WebhookRequest{topic: "user.signin", target_url: "https://google.com"}]
+)
+```
