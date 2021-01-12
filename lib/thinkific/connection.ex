@@ -12,6 +12,7 @@ defmodule Thinkific.Connection do
   # Add any middleware here (authentication)
   # plug Tesla.Middleware.BaseUrl, "https://api.thinkific.com/api/public/v1"
   # plug Tesla.Middleware.Headers, [{"User-Agent", "elixir-sdk"}]
+  plug(Tesla.Middleware.JSON, engine: Poison, engine_opts: [keys: :atoms])
 
   @doc """
   Configure an authless client connection (this is useless, unless you want to easily see unauthorized error messages)
@@ -20,12 +21,13 @@ defmodule Thinkific.Connection do
 
   Tesla.Env.client
   """
-  @spec new() :: Tesla.Env.client
+  @spec new() :: Tesla.Env.client()
   def new do
     middleware = [
       {Tesla.Middleware.BaseUrl, "https://api.thinkific.com/api/public/v1"},
-      {Tesla.Middleware.Headers, [{"User-Agent", "elixir-sdk"}]},
+      {Tesla.Middleware.Headers, [{"User-Agent", "elixir-sdk"}]}
     ]
+
     Tesla.client(middleware)
   end
 
@@ -45,7 +47,7 @@ defmodule Thinkific.Connection do
 
   Tesla.Env.client
   """
-  @spec new(atom, String, Map) :: Tesla.Env.client
+  @spec new(atom, String, Map) :: Tesla.Env.client()
   def new(:admin_api, subdomain, %{"Authorization" => token}) do
     middleware = [
       {Tesla.Middleware.BaseUrl, "https://" <> subdomain <> ".thinkific.com/api/public/v1"},
@@ -58,11 +60,17 @@ defmodule Thinkific.Connection do
   def new(:admin_api, subdomain, %{"X-Auth-API-Key" => api_key}) do
     middleware = [
       {Tesla.Middleware.BaseUrl, "https://" <> subdomain <> ".thinkific.com/api/public/v1"},
-      {Tesla.Middleware.Headers, [{"User-Agent", "elixir-sdk"}, {"X-Auth-API-Key", api_key}, {"X-Auth-Subdomain", subdomain}]}
+      {Tesla.Middleware.Headers,
+       [
+         {"User-Agent", "elixir-sdk"},
+         {"X-Auth-API-Key", api_key},
+         {"X-Auth-Subdomain", subdomain}
+       ]}
     ]
 
     Tesla.client(middleware)
   end
+
   def new(:webhooks_api, subdomain, %{"Authorization" => token}) do
     middleware = [
       {Tesla.Middleware.BaseUrl, "https://" <> subdomain <> ".thinkific.com/api/v2"},
@@ -75,10 +83,14 @@ defmodule Thinkific.Connection do
   def new(:webhooks_api, subdomain, %{"X-Auth-API-Key" => api_key}) do
     middleware = [
       {Tesla.Middleware.BaseUrl, "https://" <> subdomain <> ".thinkific.com/api/v2"},
-      {Tesla.Middleware.Headers, [{"User-Agent", "elixir-sdk"}, {"X-Auth-API-Key", api_key}, {"X-Auth-Subdomain", subdomain}]}
+      {Tesla.Middleware.Headers,
+       [
+         {"User-Agent", "elixir-sdk"},
+         {"X-Auth-API-Key", api_key},
+         {"X-Auth-Subdomain", subdomain}
+       ]}
     ]
 
     Tesla.client(middleware)
   end
-
 end
