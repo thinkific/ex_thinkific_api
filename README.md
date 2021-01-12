@@ -8,7 +8,7 @@ This package can be installed by adding `ex_thinkific_api` to your list of depen
 
 ```elixir
 def deps do
-  [{:ex_thinkific_api, "~> 0.1.0"}]
+  [{:ex_thinkific_api, "~> 0.1.2"}]
 end
 ```
 
